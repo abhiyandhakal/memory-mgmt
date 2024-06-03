@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dynamic Partitioning</title>
+  </head>
+
+  <style>
+    .block {
+      border: 1px solid black;
+      width: 100%;
+      background: #0f8;
+
+      display: grid;
+      place-items: center;
+      place-content: center;
+    }
+
+    .block.empty {
+      background: none;
+    }
+
+    #memory {
+      width: 50vw;
+      border: 2px solid black;
+    }
+  </style>
+
+  <body>
+    <select>
+      <option value="first">First Fit</option>
+      <option value="best">Best Fit</option>
+      <option value="worst">Worst Fit</option>
+    </select>
+    <div id="memory"></div>
+    <button id="next-btn">Next</button>
+  </body>
+
+  <script src="index.js"></script>
+</html>
