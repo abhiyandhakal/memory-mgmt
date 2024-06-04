@@ -1,41 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dynamic Partitioning</title>
-  </head>
 
-  <style>
-    .block {
-      border: 1px solid black;
-      width: 100%;
-      background: #0f8;
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dynamic Partitioning</title>
+</head>
 
-      display: grid;
-      place-items: center;
-      place-content: center;
-    }
+<style>
+	.block {
+		border: 1px solid black;
+		width: 100%;
+		background: #0f8;
 
-    .block.empty {
-      background: none;
-    }
+		display: grid;
+		place-items: center;
+		place-content: center;
+	}
 
-    #memory {
-      width: 50vw;
-      border: 2px solid black;
-    }
-  </style>
+	.block.empty {
+		background: none;
+	}
 
-  <body>
-    <select>
-      <option value="first">First Fit</option>
-      <option value="best">Best Fit</option>
-      <option value="worst">Worst Fit</option>
-    </select>
-    <div id="memory"></div>
-    <button id="next-btn">Next</button>
-  </body>
+	h1 {
+		font-size: 2rem;
+		margin: 0;
+		padding: 0;
+	}
 
-  <script src="index.js"></script>
+	#memory {
+		width: 50vw;
+		border: 2px solid black;
+	}
+</style>
+
+<body>
+	<h1></h1>
+	<select>
+		<option value="first">First Fit</option>
+		<option value="best">Best Fit</option>
+		<option value="worst">Worst Fit</option>
+	</select>
+	<div id="memory"></div>
+	<button id="next-btn">Next</button>
+</body>
+
+<script src="index.js"></script>
+
 </html>

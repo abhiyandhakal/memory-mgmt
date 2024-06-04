@@ -38,6 +38,7 @@ let counter = 0;
 const scaleBy = 30;
 
 memory.style.height = memSize * scaleBy + "px";
+document.querySelector("h1").textContent = `Memory Size: ${memSize}px`;
 
 nextBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -62,8 +63,12 @@ nextBtn.addEventListener("click", (e) => {
 
   if (algo.value === "first") {
     handleAddNewProcess(processDiv, getBestLocationFirstFit(process.size));
+  } else if (algo.value === "best") {
+    handleAddNewProcess(processDiv, getBestLocationBestFit(process.size));
+  } else if (algo.value === "worst") {
+    handleAddNewProcess(processDiv, getBestLocationWorstFit(process.size));
   } else {
-    console.log("what?", algo.textContent);
+    console.log("Unknown algorithm:", algo.value);
   }
 
   processDiv.innerHTML = `<div><span>Name: ${process.name}<span><button id='remove-${process.name}' class='remove'>Remove</button></span></div><span>Size: ${process.size}</span>`;
@@ -142,6 +147,50 @@ function getBestLocationFirstFit(size) {
   console.log("best:", best);
 
   return best;
+}
+
+function getBestLocationBestFit(size) {
+  const processDivs = memory.childNodes;
+  let best = -1;
+  let bestFitSize = Infinity;
+
+  for (let i = 0; i < processDivs.length; i++) {
+    const processDiv = processDivs[i];
+    const currentSize = +processDiv.style.height.split("p")[0] / scaleBy;
+
+    if (processDiv.classList.contains("empty") && size <= currentSize) {
+      if (currentSize < bestFitSize) {
+        bestFitSize = currentSize;
+        best = i;
+      }
+    }
+  }
+
+  console.log("best fit:", best);
+
+  return best;
+}
+
+function getBestLocationWorstFit(size) {
+  const processDivs = memory.childNodes;
+  let worst = -1;
+  let worstFitSize = 0;
+
+  for (let i = 0; i < processDivs.length; i++) {
+    const processDiv = processDivs[i];
+    const currentSize = +processDiv.style.height.split("p")[0] / scaleBy;
+
+    if (processDiv.classList.contains("empty") && size <= currentSize) {
+      if (currentSize > worstFitSize) {
+        worstFitSize = currentSize;
+        worst = i;
+      }
+    }
+  }
+
+  console.log("worst fit:", worst);
+
+  return worst;
 }
 
 function mergeEmptyBlocks() {
